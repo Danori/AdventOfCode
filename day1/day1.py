@@ -60,7 +60,7 @@ def part2(sorted_sums: List[int]) -> int:
 
 
 if __name__ == '__main__':
-    cal_input = process_input()
-    sorted_sums = sum_and_sort_input(cal_input)
+    calorie_input = process_input()
+    sorted_sums = sum_and_sort_input(calorie_input)
     print(f'Part 1 solution: {part1(sorted_sums)}')
     print(f'Part 2 solution: {part2(sorted_sums)}')

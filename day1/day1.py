@@ -20,14 +20,8 @@ output:
 [1, 2, 3, None, 6, 7, None, 4, 5]
 '''
 def process_input() -> List[Union[int, None]]:
-    calorie_input = []
     with open('input.txt') as f:
-        for line in f:
-            if line == '\n':
-                calorie_input.append(None)
-            else:
-                calorie_input.append(int(line))
-    return calorie_input
+        return [None if line == '\n' else int(line) for line in f]
 
 
 '''

@@ -2,18 +2,12 @@ from typing import List, Tuple, Dict
 
 
 def process_input() -> List[Tuple[str, str]]:
-    games = []
     with open('input.txt') as f:
-        for line in f:
-            games.append(tuple(line.split()))
-    return games
+        return [tuple(line.split()) for line in f]
 
 
 def solution(games: List[Tuple[str, str]], score_map: Dict[Tuple[str, str], int]) -> int:
-    total_score = 0
-    for game in games:
-        total_score += score_map[game]
-    return total_score
+    return sum([score_map[game] for game in games])
 
 
 if __name__ == '__main__':

@@ -60,7 +60,6 @@ def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
 
 '''
 Takes a sorted list, and return the max element of the list (the last element).
-
 '''
 def part1(sorted_sums: List[int]) -> int:
     return sorted_sums[-1]

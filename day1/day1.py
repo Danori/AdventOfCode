@@ -46,7 +46,6 @@ def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
                     break
             sums.insert(insert_index, calorie_sum)
             calorie_sum = 0
-            continue
         else:
             calorie_sum += calories
     return sums

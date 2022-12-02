@@ -25,8 +25,7 @@ def process_input() -> List[Union[int, None]]:
 
 
 '''
-Takes a list of integer and None elements, sums all the values between every None element, and sorts these sums
-as it does so via insertion sort.
+Takes a list of integer and None elements, sums all the values between every None element, and sorts these sums.
 
 Example:
 input:
@@ -39,16 +38,11 @@ def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
     sums, calorie_sum = [], 0
     for calories in calorie_input:
         if calories is None:
-            insert_index = len(sums)
-            for i in range(len(sums)):
-                if sums[i] > calorie_sum:
-                    insert_index = i
-                    break
-            sums.insert(insert_index, calorie_sum)
+            sums.append(calorie_sum)
             calorie_sum = 0
         else:
             calorie_sum += calories
-    return sums
+    return sorted(sums)
 
 
 '''

@@ -10,11 +10,14 @@ input.txt:
 2
 3
 
+6
+7
+
 4
 5
 
 output:
-[1, 2, 3, None, 4, 5]
+[1, 2, 3, None, 6, 7, None, 4, 5]
 '''
 def process_input() -> List[Union[int, None]]:
     calorie_input = []
@@ -28,22 +31,26 @@ def process_input() -> List[Union[int, None]]:
 
 
 '''
-Takes a list of integer and None elements, and sums all the values between every None element.
+Takes a list of integer and None elements, sums all the values between every None element, and sorts these sums
+as it does so via insertion sort.
 
 Example:
 input:
-[1, 2, 3, None, 4, 5]
+[1, 2, 3, None, 6, 7, None, 4, 5]
 
 output:
-[6, 9]
-
-Note this does not output the actual solution, so that it may be resued for part 2.
+[6, 9, 13]
 '''
-def part1(calorie_input: List[Union[int, None]]) -> int:
+def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
     sums, calorie_sum = [], 0
     for calories in calorie_input:
         if calories is None:
-            sums.append(calorie_sum)
+            insert_index = len(sums)
+            for i in range(len(sums)):
+                if sums[i] > calorie_sum:
+                    insert_index = i
+                    break
+            sums.insert(insert_index, calorie_sum)
             calorie_sum = 0
             continue
         else:
@@ -52,24 +59,22 @@ def part1(calorie_input: List[Union[int, None]]) -> int:
 
 
 '''
-Takes a list of integer and None elements, sums all the values between every None element, sorts these summations,
-and returns the largest three of these resulting values.
+Takes a sorted list, and return the max element of the list (the last element).
 
-Example:
-input:
-[1, 2, 3, None, 4, 5, None, 1, None, 2]
-
-output:
-[2, 6, 9]
-
-Note this does not output the actual solution, because this makes it look nicer in the main function. :)
 '''
-def part2(cal_input: List[Union[int, None]]) -> int:
-    sums = sorted(part1(cal_input))
-    return sums[-3:]
+def part1(sorted_sums: List[int]) -> int:
+    return sorted_sums[-1]
+
+
+'''
+Takes a sorted list, and returns a sum of the largest 3 elements (the last 3 elements).
+'''
+def part2(sorted_sums: List[int]) -> int:
+    return sum(sorted_sums[-3:])
 
 
 if __name__ == '__main__':
     cal_input = process_input()
-    print(f'Part 1 solution: {max(part1(cal_input))}')
-    print(f'Part 2 solution: {sum(part2(cal_input))}')
+    sorted_sums = sum_and_sort_input(cal_input)
+    print(f'Part 1 solution: {part1(sorted_sums)}')
+    print(f'Part 2 solution: {part2(sorted_sums)}')

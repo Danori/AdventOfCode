@@ -11,7 +11,7 @@ def split_rucksacks(rucksacks: list[str]) -> list[list[str]]:
     for rucksack in rucksacks:
         end = len(rucksack)
         mid = len(rucksack) // 2
-        rucksack_pairs.append([rucksack[0 : mid], rucksack[mid : end]])
+        rucksack_pairs.append([rucksack[0:mid], rucksack[mid:end]])
     return rucksack_pairs
 
 

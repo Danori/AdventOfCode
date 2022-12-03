@@ -1,4 +1,3 @@
-from typing import List, Union 
 
 
 '''
@@ -19,7 +18,7 @@ input.txt:
 output:
 [1, 2, 3, None, 6, 7, None, 4, 5]
 '''
-def process_input() -> List[Union[int, None]]:
+def process_input() -> list[int | None]:
     with open('input.txt') as f:
         return [None if line == '\n' else int(line) for line in f]
 
@@ -34,7 +33,7 @@ input:
 output:
 [6, 9, 13]
 '''
-def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
+def sum_and_sort_input(calorie_input: list[int | None]) -> list[int]:
     sums, calorie_sum = [], 0
     for calories in calorie_input:
         if calories is None:
@@ -48,14 +47,14 @@ def sum_and_sort_input(calorie_input: List[Union[int, None]]) -> List[int]:
 '''
 Takes a sorted list, and return the max element of the list (the last element).
 '''
-def part1(sorted_sums: List[int]) -> int:
+def part1(sorted_sums: list[int]) -> int:
     return sorted_sums[-1]
 
 
 '''
 Takes a sorted list, and returns a sum of the largest 3 elements (the last 3 elements).
 '''
-def part2(sorted_sums: List[int]) -> int:
+def part2(sorted_sums: list[int]) -> int:
     return sum(sorted_sums[-3:])
 
 

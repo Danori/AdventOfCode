@@ -11,17 +11,17 @@ def process_input():
         return section_input
 
 
-def sections_contained(left, right, func):
+def sections_contained(func, left, right):
     left_range  = range(left[0],  left[1]  + 1)
     right_range = range(right[0], right[1] + 1)
     return func(section in left_range for section in right_range) or \
            func(section in right_range for section in left_range) 
 
 
-def solution(sections_input, func):
+def solution(func, sections_input):
     num_contained = 0
     for sections in sections_input:
-        if sections_contained(*sections, func):
+        if sections_contained(func, *sections):
             num_contained += 1
     return num_contained
 
@@ -29,5 +29,5 @@ def solution(sections_input, func):
 if __name__ == '__main__':
     section_input = process_input()
 
-    print(f'Part 1 solution: {solution(section_input, all)}')
-    print(f'Part 2 solution: {solution(section_input, any)}')
+    print(f'Part 1 solution: {solution(all, section_input)}')
+    print(f'Part 2 solution: {solution(any, section_input)}')

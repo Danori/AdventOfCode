@@ -11,7 +11,7 @@ def process_input():
         return section_input
 
 
-def section_contained(left, right, func):
+def sections_contained(left, right, func):
     left_range  = range(left[0],  left[1]  + 1)
     right_range = range(right[0], right[1] + 1)
     return func(section in left_range for section in right_range) or \
@@ -21,7 +21,7 @@ def section_contained(left, right, func):
 def solution(sections_input, func):
     num_contained = 0
     for sections in sections_input:
-        if section_contained(*sections, func):
+        if sections_contained(*sections, func):
             num_contained += 1
     return num_contained
 

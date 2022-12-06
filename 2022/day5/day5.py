@@ -33,31 +33,29 @@ def process_input(filename='input.txt'):
     return dict(sorted(stacks.items())), instructions
 
 
-def solution(stacks, instructions, operation_mode):
-    if operation_mode not in ['one', 'many']:
-        return 'ERROR: invalid operation_mode'
+def move_one(stacks, num_crates, from_stack, to_stack):
+    for _ in range(num_crates):
+        crate = stacks[from_stack].pop()
+        stacks[to_stack].append(crate)
+    return stacks
 
-    if operation_mode == 'one':
-        for instruction in instructions:
-            for _ in range(instruction[0]):
-                crate = stacks[instruction[1]].pop()
-                stacks[instruction[2]].append(crate)
-                
-    elif operation_mode == 'many':
-        for instruction in instructions:
-            crates = stacks[instruction[1]][-instruction[0]:]
-            del stacks[instruction[1]][-instruction[0]:]
-            stacks[instruction[2]] = stacks[instruction[2]] + crates
 
-    stack_tops = ''
-    for stack in stacks.values():
-        stack_tops += stack[-1]
+def move_many(stacks, num_crates, from_stack, to_stack):
+    crates = stacks[from_stack][-num_crates:]
+    del stacks[from_stack][-num_crates:]
+    stacks[to_stack] = stacks[to_stack] + crates
+    return stacks
 
-    return stack_tops
+
+def solution(stacks, instructions, move_func):
+    for instruction in instructions:
+        stacks = move_func(stacks, *instruction)
+
+    return ''.join([stack[-1] for stack in stacks.values()])
         
 
 if __name__ == '__main__':
     stacks, instructions = process_input()
 
-    print(f'Part 1 solution: {solution(deepcopy(stacks), instructions, "one")}')
-    print(f'Part 2 solution: {solution(deepcopy(stacks), instructions, "many")}')
+    print(f'Part 1 solution: {solution(deepcopy(stacks), instructions, move_one )}')
+    print(f'Part 2 solution: {solution(deepcopy(stacks), instructions, move_many)}')

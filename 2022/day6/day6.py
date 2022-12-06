@@ -6,8 +6,7 @@ def process_input():
 
 
 def all_unique(signal):
-    signal_set = set(signal)
-    if len(signal_set) == len(signal):
+    if len(set(signal)) == len(signal):
         return True
     return False
 

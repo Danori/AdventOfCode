@@ -5,8 +5,8 @@ def process_input():
         return f.readline().strip()
 
 
-def all_unique(signal):
-    return len(set(signal)) == len(signal)
+def all_unique(packet):
+    return len(set(packet)) == len(packet)
 
 
 def solution(signal, packet_len):

@@ -13,7 +13,7 @@ def all_unique(signal):
 
 
 def solution(signal, packet_len):
-    for i in range(0, len(signal) - packet_len):
+    for i in range(len(signal) - packet_len):
         if all_unique(signal[i:i + packet_len]):
             return i + packet_len
     return -1

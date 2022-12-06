@@ -6,9 +6,7 @@ def process_input():
 
 
 def all_unique(signal):
-    if len(set(signal)) == len(signal):
-        return True
-    return False
+    return len(set(signal)) == len(signal)
 
 
 def solution(signal, packet_len):

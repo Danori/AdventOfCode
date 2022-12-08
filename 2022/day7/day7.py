@@ -47,9 +47,9 @@ def calc_dir_size(node):
 
 def process_input():
     regex_to_func = {
-        re.compile('\$ cd \.\.'):     parent,
-        re.compile('\$ cd [a-z]+'):   child,
-        re.compile('dir [a-z]+'):     create_child_dir,
+        re.compile('\$ cd \.\.'):      parent,
+        re.compile('\$ cd [a-z]+'):    child,
+        re.compile('dir [a-z]+'):      create_child_dir,
         re.compile('\d+ ([a-z]|\.)+'): create_child_file,
     }
 

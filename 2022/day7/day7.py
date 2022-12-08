@@ -70,15 +70,11 @@ def process_input():
 
 
 def sum_dirs_smaller_than(node, max_size):
-    sum_size = 0
+    size = node.size if node.is_dir and node.size < max_size else 0
     
-    for child in node.children.values():
-        sum_size += sum_dirs_smaller_than(child, max_size)
-
-    if node.is_dir and node.size < max_size:
-        sum_size += node.size
-
-    return sum_size
+    return size + sum(
+        sum_dirs_smaller_than(child, max_size) for child in node.children.values()
+    )
 
 
 def min_dir_size_to_delete(node, needed_space, unused_space):

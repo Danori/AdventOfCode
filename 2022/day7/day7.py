@@ -50,7 +50,7 @@ def process_input():
         re.compile('\$ cd \.\.'):     parent,
         re.compile('\$ cd [a-z]+'):   child,
         re.compile('dir [a-z]+'):     create_child_dir,
-        re.compile('\d+ ([a-z]|.)+'): create_child_file,
+        re.compile('\d+ ([a-z]|\.)+'): create_child_file,
     }
 
     curr, func = Node(name='/', is_dir=True), None
@@ -93,6 +93,8 @@ def min_dir_size_to_delete(node, needed_space, unused_space):
 
 if __name__ == '__main__':
     root = process_input()
+
+    print_tree(root)
 
     part1 = sum_dirs_smaller_than(root, 100000)
     print(f'Part 1 solution: {part1}')
